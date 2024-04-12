@@ -7,6 +7,8 @@ import cors from 'cors';
 import appointmentRouter from './routes/appointment.js';
 import informationRouter from './routes/information.js';
 
+import swaggerDocs from './swagger.js'
+
 const app = express();
 const port = 3002
 const version = "v1"
@@ -17,6 +19,7 @@ dotenv.config();
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
+    swaggerDocs(app, port)
 })
 
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.iajdy8a.mongodb.net/truckbusters?retryWrites=true&w=majority&appName=Cluster0`)
