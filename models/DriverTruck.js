@@ -5,4 +5,4 @@ const driverTruckSchema = mongoose.Schema({
     id_truck: { type: mongoose.Schema.Types.ObjectId, ref: "Truck", required: true }
 });
 
-module.exports = mongoose.model('DriverTruck', driverTruckSchema);
+export default mongoose.model('DriverTruck', driverTruckSchema);

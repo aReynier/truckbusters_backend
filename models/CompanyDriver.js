@@ -5,4 +5,4 @@ const companyDriverSchema = mongoose.Schema({
     id_driver: { type: mongoose.Schema.Types.ObjectId, ref: "Driver", required: true }
 });
 
-module.exports = mongoose.model('CompanyDriver', companyDriverSchema);
+export default mongoose.model('CompanyDriver', companyDriverSchema);
