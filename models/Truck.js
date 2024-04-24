@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 const truckSchema = mongoose.Schema({
     brand: { type: String, required: true },
-    model: { type: Number, required: true },
-    license_plate: { type: Number, required: true }
+    model: { type: String, required: true },
+    license_plate: { type: String, required: true }
    });
 
-module.exports = mongoose.model('truck',truckSchema);
+export default mongoose.model('Truck', truckSchema);
