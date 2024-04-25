@@ -4,6 +4,8 @@ import Driver from '../models/Driver.js';
 import Truck from '../models/Truck.js';
 import CompanyDriver from '../models/CompanyDriver.js';
 import DriverTruck from '../models/DriverTruck.js';
+import sendCustomerEmail from '../controllers/sendCustomerEmail.js'
+import sendSecretaryEmail from '../controllers/sendSecretaryEmail.js'
 
 const appointmentController = {
     makeAppointment: async  (req, res, next) => { 
@@ -68,6 +70,10 @@ const appointmentController = {
             await appointment.save()
 
             console.log("trying creating appointment");
+
+            sendCustomerEmail( moment, email, name, firstname, lastname )
+            sendSecretaryEmail(moment, email, name, phone, firstname, lastname, driverPhone) 
+
             res.status(201).json({ message: 'appointment created!'});
         } catch (error) {
             res.status(400).json({ error: error.message });
