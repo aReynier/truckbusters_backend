@@ -16,7 +16,7 @@ const sendCustomerEmail = (moment, email, name, firstname, lastname ) => {
         from: "your_email@gmail.com",
         to: email,
         subject: "Votre réservation chez TruckBusters",
-        text: `Bonjour ${name}, nous vous confirmons par cet email votre rendez vous du ${new Date(moment.toLocaleString('fr-FR', { timeZone: 'UTC' }))} avec votre chauffeur prénommé ${lastname} ${firstname} chez TruckBusters, pensez à ramener votre carte grise. Passez une bonne journée`,
+        text: `Bonjour ${name}, nous vous confirmons par cet email votre rendez vous du ${new Date(moment.toLocaleString('fr-FR', { timeZone: 'UTC' }))} (compter deux heures de plus pour l'heure française) avec votre chauffeur prénommé ${lastname} ${firstname} chez TruckBusters, pensez à ramener votre carte grise. Passez une bonne journée`,
     };
     
     transporter.sendMail(mailOptions, (error, info) => {
