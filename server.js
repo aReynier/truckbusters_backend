@@ -44,9 +44,18 @@ app.listen(port, () => {
     swaggerDocs(app, port)
 })
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.iajdy8a.mongodb.net/truckbusters?retryWrites=true&w=majority&appName=Cluster0`)
+// Connection on MongoDB docker container
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
   .then(() => console.log('MongoDB connexion success !'))
-  .catch(() => console.log('MongoDB connexion fail !'));
+  .catch((err) => console.log('MongoDB connexion fail !', err));
+
+// Connection on MongoDB atlas cluster
+// mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.iajdy8a.mongodb.net/truckbusters?retryWrites=true&w=majority&appName=Cluster0`)
+//   .then(() => console.log('MongoDB connexion success !'))
+//   .catch(() => console.log('MongoDB connexion fail !'));
 
 app.use(bodyParser.json());
 
