@@ -29,6 +29,16 @@ app.use(cors())
 
 dotenv.config();
 
+// Patch for express 5.1.0
+app.use((req, res, next) => {
+  Object.defineProperty(req, 'query', {
+    ...Object.getOwnPropertyDescriptor(req, 'query'),
+    value: req.query,
+    writable: true,
+  });
+  next();
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
     swaggerDocs(app, port)
