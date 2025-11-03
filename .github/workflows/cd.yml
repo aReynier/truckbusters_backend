@@ -39,8 +39,28 @@ jobs:
           ${{ secrets.DOCKERHUB_USERNAME }}/truckbusters-backend:latest
           ${{ secrets.DOCKERHUB_USERNAME }}/truckbusters-backend:${{ github.sha }}
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Deploy docker container
-  #     uses: echo "step to be done"
+  vps_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: SSh deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_KEY  }}
+          script: |
+            cd /test_app
+            sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TRUCKBUSTERS_TOKEN }}
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest
+            sudo docker stop main  true
+            sudo docker rm main  true
+            sudo docker run -d ${{ secrets.DOCKERHUB_USERNAME }}/truckbusters-backend:latest
+
+
+            
+      
+
+
