@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-COPY .env .
+COPY .env.prod .
 RUN npm run lint && npm run build
 
 # Taking the builder for making tests
@@ -16,7 +16,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-COPY .env .
+COPY .env.prod .
 
 ARG GROUPNAME=truckbusters-group
 ARG USERNAME=truckbusters-app-user

@@ -17,8 +17,8 @@ jobs:
 
     - name: Create .env file
       run: |
-        touch .env
-        echo "${{secrets.ENV}}" >> .env 
+        touch .env.prod
+        echo "${{secrets.ENV}}" >> .env.prod
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -33,7 +33,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./Dockerfile.api
+        file: ./Dockerfile.api-prod
         push: true
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/truckbusters-backend:latest
@@ -52,14 +52,8 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_KEY  }}
           script: |
-            cd /test_app
-            sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TRUCKBUSTERS_TOKEN }}
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest
-            sudo docker stop main  true
-            sudo docker rm main  true
-            sudo docker run -d ${{ secrets.DOCKERHUB_USERNAME }}/truckbusters-backend:latest
-
-
+            cd truckbusters_app/truckbusters_backend
+            sudo docker compose -f docker-compose.prod.yml up -d
             
       
 
