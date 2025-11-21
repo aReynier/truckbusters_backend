@@ -1,13 +1,13 @@
 services:
   database:
-    image: mongodb/mongodb-community-server:8.2-ubi8
     container_name: truckbusters-database
+    image: mongodb/mongodb-community-server:8.2-ubi8
     restart: always
     env_file: .env.prod
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-      - MONGO_INITDB_DATABASE={MONGO_INITDB_DATABASE}
+      - MONGODB_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGODB_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+      - MONGODB_INITDB_DATABASE={MONGO_INITDB_DATABASE}
     networks:
       - truckbusters-network
     volumes:
@@ -19,7 +19,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 10s
+      start_period: 20s
 
   api:
     container_name: truckbusters-api
