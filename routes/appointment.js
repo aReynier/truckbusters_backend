@@ -1,17 +1,17 @@
-import express from 'express';
-const router = express.Router()
-import appointmentController from '../controllers/appointment.js';
+import express from "express";
+const router = express.Router();
+import appointmentController from "../controllers/appointment.js";
 
-router.get('/', appointmentController.findAllAppointment)
-router.get('/:id', appointmentController.findOneAppointment)
-router.post('/', appointmentController.makeAppointment)
+router.get("/", appointmentController.findAllAppointment);
+router.get("/:id", appointmentController.findOneAppointment);
+router.post("/", appointmentController.makeAppointment);
 
 /**
  * @openapi
  * tags:
  *   name: Appointments
  *   description: Operations related to appointments
- * 
+ *
  * @openapi
  * tags:
  *   name: Information
@@ -70,7 +70,7 @@ router.post('/', appointmentController.makeAppointment)
  *               $ref: '#/components/schemas/AppointmentList'
  *       '400':
  *         description: Bad Request
- * 
+ *
  * @openapi
  * /api/v1/appointment/{id}:
  *   get:
