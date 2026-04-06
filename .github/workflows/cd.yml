@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 'feature/22-cicd'
   pull_request:
 
 jobs:
