@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 COPY .env.dev .
-RUN npm run lint && npm run build
+RUN npm run eslint && npm run prettier && npm run build
 
 # Taking the builder for making tests
 # FROM builder AS tester

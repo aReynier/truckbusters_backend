@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "lint": "npx eslint",
+    "eslint": "npx eslint",
+    "prettier": "npx prettier . --check",
     "test": "node server.js",
     "build": "node server.js"
   },
