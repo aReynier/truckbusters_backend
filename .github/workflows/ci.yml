@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - develop
+      - feature/24-linter
   pull_request:
 
 jobs:
