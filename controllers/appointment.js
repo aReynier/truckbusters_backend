@@ -8,7 +8,7 @@ import sendCustomerEmail from '../controllers/sendCustomerEmail.js'
 import sendSecretaryEmail from '../controllers/sendSecretaryEmail.js'
 
 const appointmentController = {
-    makeAppointment: async  (req, res, next) => { 
+    makeAppointment: async  (req, res) => { 
         try {
             const { appointmentData, companyData, driverData, truckData } = req.body;
 
@@ -80,7 +80,7 @@ const appointmentController = {
         }
     },
 
-    findAllAppointment: async (req, res, next) => {
+    findAllAppointment: async (req, res) => {
         try {
             const [appointments, companies, drivers, trucks] = await Promise.all([
                 Appointment.find()
@@ -93,7 +93,7 @@ const appointmentController = {
         }
     },
 
-    findOneAppointment: async (req, res, next) => {
+    findOneAppointment: async (req, res) => {
         try { 
             const appointment = await Appointment.findById(req.params.id);
             if (!appointment) {
