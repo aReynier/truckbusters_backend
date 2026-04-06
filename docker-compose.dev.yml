@@ -1,0 +1,42 @@
+services:
+  database:
+    image: mongodb/mongodb-community-server:8.2-ubi8
+    container_name: truckbusters-database
+    restart: always
+    env_file: .env.dev
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGODB_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+      - MONGODB_INITDB_DATABASE={MONGO_INITDB_DATABASE}
+    networks:
+      - truckbusters-network
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\")' --quiet"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api:
+    container_name: truckbusters-api
+    build:
+        context: .
+        dockerfile: Dockerfile.api-dev
+    env_file: .env.dev
+    depends_on:
+      - database
+    networks:
+      - truckbusters-network
+    ports:
+      - "3002:3002"
+    
+networks:
+  truckbusters-network:
+    driver: bridge
+
+volumes:
+  mongodb:
