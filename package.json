@@ -9,6 +9,7 @@
     "eslint": "npx eslint",
     "prettier": "npx prettier . --check",
     "test": "vitest",
+    "coverage": "vitest run --coverage",
     "build": "node server.js"
   },
   "author": "",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@vitest/coverage-v8": "^4.1.2",
     "eslint": "^9.39.4",
     "globals": "^17.4.0",
     "nodemon": "^3.1.0",
