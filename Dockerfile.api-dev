@@ -4,7 +4,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-COPY .env.dev .
 RUN npm run eslint && npm run prettier && npm run build
 
 # Taking the builder for making tests
@@ -16,7 +15,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-COPY .env.dev .
 
 ARG GROUPNAME=truckbusters-group
 ARG USERNAME=truckbusters-app-user

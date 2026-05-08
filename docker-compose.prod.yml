@@ -7,7 +7,7 @@ services:
     environment:
       - MONGODB_INITDB_ROOT_USERNAME=${MONGO_USER}
       - MONGODB_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-      - MONGODB_INITDB_DATABASE={MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_DATABASE={MONGO_INITDB_DATABASE}
     networks:
       - truckbusters-network
     volumes:
