@@ -65,14 +65,18 @@ npm run prettier
 
 ### Test
 
-Lancer également les tests:
+Les tests sont exécutés avec Vitest
 
-- tests unitaires
-- coverage
-- tests d'intégration
+Pour Lancer les tests automatisés :
 
 ```
 npm run test
+```
+
+Pour générer le rapport de couverture :
+
+```
+npm run coverage
 ```
 
 ## 6- Structure CI/CD
