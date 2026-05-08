@@ -1,0 +1,31 @@
+# Build stage
+FROM node:22-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run eslint && npm run prettier && npm run build
+
+# Taking the builder for making tests
+# FROM builder AS tester
+
+# Production stage
+FROM node:22-alpine AS production
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+
+ARG GROUPNAME=truckbusters-group
+ARG USERNAME=truckbusters-app-user
+ARG USER_GID=1002
+ARG USER_UID=1002
+
+RUN addgroup -g $USER_GID -S $GROUPNAME \
+    && adduser -u $USER_UID -S -G $GROUPNAME $USERNAME
+
+RUN chown -R $USERNAME:$GROUPNAME /app
+
+USER $USERNAME
+
+CMD ["node","server.js"]
