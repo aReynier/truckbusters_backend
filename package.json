@@ -10,7 +10,7 @@
     "prettier": "npx prettier . --check",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build": "node server.js"
+    "build": "node --check server.js"
   },
   "author": "",
   "license": "ISC",
