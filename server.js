@@ -70,3 +70,5 @@ app.use(mongoSanitize());
 
 app.use(`/api/${version}/appointment`, appointmentRouter);
 app.use(`/api/${version}/information`, informationRouter);
+
+export default app;

@@ -3,3 +3,4 @@ info.txt
 .env.dev
 .env.prod
 .env
+coverage
