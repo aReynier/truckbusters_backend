@@ -124,6 +124,43 @@ Le VPS doit être préparé avec :
 
 - Chemin utilisé dans le workflow : `truckbusters_app/truckbusters_backend`
 
+### HTTPS (Let’s Encrypt) avec Nginx sur le VPS
+
+En production, le trafic public doit passer par HTTPS.
+
+Ainsi, dans le terminal du VPS:
+
+```
+sudo apt update
+sudo apt install nginx certbot python3-certbot-nginx
+```
+
+puis lancer certbot avec son nom de domaine:
+
+```
+sudo certbot --nginx -d nom-de-domaine
+```
+
+Recharger nginx après toute modification:
+
+```
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Tester le renouvellement automatique avec:
+
+```
+sudo certbot renew --dry-run
+```
+
+note: des paramétrages seront surement requis pour que le https soit bien présenté et qu'il y ait des redirections de htttp vers https
+
+Vérifier que la TLS soit bien en 1.2 ou 1.3:
+
+```
+cat /etc/letsencrypt/options-ssl-nginx.conf
+```
+
 ## 10- Déploiement automatisé (production)
 
 Le workflow CD se déclenche sur push vers main (et également sur pull request selon la configuration actuelle).
