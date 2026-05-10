@@ -6,6 +6,7 @@ Il permet de gérer des rendez-vous de contrôle technique pour des camions.
 ## Sommaire
 
 - [Description](#description)
+- [Démo](#démo)
 - [Technologies utilisées](#technologies-utilisées)
 - [Lancement en local](#lancement-en-local)
 - [Fonctionnalités](#fonctionnalités)
@@ -14,6 +15,10 @@ Il permet de gérer des rendez-vous de contrôle technique pour des camions.
 ## Description
 
 Le back-end expose une API REST pour créer, consulter, modifier et supprimer des rendez-vous.
+
+## Démo
+
+Une démo de ce back-end est disponible à l'adresse suivante: https://vps-44ce19bc.vps.ovh.net/api/v1/appointment
 
 ## Technologies utilisées
 
